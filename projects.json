@@ -1,15 +1,15 @@
 [
-  {"name": "photocraft",  "repo": "storytold/photocraft"},
-  {"name": "vectorcraft", "repo": "storytold/vectorcraft"},
-  {"name": "filmcraft",   "repo": "storytold/filmcraft"},
-  {"name": "lightcraft",  "repo": "storytold/lightcraft"},
-  {"name": "pdfcraft",    "repo": "storytold/pdfcraft"},
-  {"name": "effectcraft", "repo": "storytold/effectcraft"},
-  {"name": "designcraft", "repo": "storytold/designcraft"},
-  {"name": "figcraft",    "repo": "storytold/figcraft"},
-  {"name": "wordcraft",   "repo": "storytold/wordcraft"},
-  {"name": "soundcraft",  "repo": "storytold/soundcraft"},
-  {"name": "deckcraft",   "repo": "storytold/deckcraft"},
-  {"name": "cadcraft",    "repo": "storytold/cadcraft"},
-  {"name": "gridcraft",   "repo": "storytold/gridcraft"}
+  {"name": "photocraft",  "repo": "storytold/photocraft",  "icon": "https://getartcraft.com/images/apps/photocraft/icon.webp"},
+  {"name": "vectorcraft", "repo": "storytold/vectorcraft", "icon": "https://getartcraft.com/images/apps/vectorcraft/icon.webp"},
+  {"name": "filmcraft",   "repo": "storytold/filmcraft",   "icon": "https://getartcraft.com/images/apps/filmcraft/icon.webp"},
+  {"name": "lightcraft",  "repo": "storytold/lightcraft",  "icon": "https://getartcraft.com/images/apps/lightcraft/icon.webp"},
+  {"name": "pdfcraft",    "repo": "storytold/pdfcraft",    "icon": "https://getartcraft.com/images/apps/pdfcraft/icon.webp"},
+  {"name": "effectcraft", "repo": "storytold/effectcraft", "icon": "https://getartcraft.com/images/apps/effectcraft/icon.webp"},
+  {"name": "designcraft", "repo": "storytold/designcraft", "icon": "https://getartcraft.com/images/apps/designcraft/icon.webp"},
+  {"name": "figcraft",    "repo": "storytold/figcraft",    "icon": "https://getartcraft.com/images/apps/figcraft/icon.webp"},
+  {"name": "wordcraft",   "repo": "storytold/wordcraft",   "icon": "https://getartcraft.com/images/apps/wordcraft/icon.webp"},
+  {"name": "soundcraft",  "repo": "storytold/soundcraft",  "icon": "https://getartcraft.com/images/apps/soundcraft/icon.webp"},
+  {"name": "deckcraft",   "repo": "storytold/deckcraft",   "icon": "https://getartcraft.com/images/apps/deckcraft/icon.webp"},
+  {"name": "cadcraft",    "repo": "storytold/cadcraft",    "icon": "https://getartcraft.com/images/apps/cadcraft/icon.webp"},
+  {"name": "gridcraft",   "repo": "storytold/gridcraft",   "icon": "https://getartcraft.com/images/apps/gridcraft/icon.webp"}
 ]
