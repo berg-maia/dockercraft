@@ -1,0 +1,15 @@
+[
+  {"name": "photocraft",  "repo": "storytold/photocraft"},
+  {"name": "vectorcraft", "repo": "storytold/vectorcraft"},
+  {"name": "filmcraft",   "repo": "storytold/filmcraft"},
+  {"name": "lightcraft",  "repo": "storytold/lightcraft"},
+  {"name": "pdfcraft",    "repo": "storytold/pdfcraft"},
+  {"name": "effectcraft", "repo": "storytold/effectcraft"},
+  {"name": "designcraft", "repo": "storytold/designcraft"},
+  {"name": "figcraft",    "repo": "storytold/figcraft"},
+  {"name": "wordcraft",   "repo": "storytold/wordcraft"},
+  {"name": "soundcraft",  "repo": "storytold/soundcraft"},
+  {"name": "deckcraft",   "repo": "storytold/deckcraft"},
+  {"name": "cadcraft",    "repo": "storytold/cadcraft"},
+  {"name": "gridcraft",   "repo": "storytold/gridcraft"}
+]
