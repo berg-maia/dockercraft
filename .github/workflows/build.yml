@@ -11,6 +11,9 @@ on:
       version:
         description: 'Versão específica (exige o campo project). Vazio = última release'
         required: false
+      force:
+        description: 'Reconstruir mesmo que a versão já exista (true/false)'
+        required: false
 
 permissions:
   contents: read
@@ -83,7 +86,7 @@ jobs:
       - name: Essa versão já foi publicada?
         id: check
         run: |
-          if docker manifest inspect "${{ steps.v.outputs.image }}:${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
+          if [ "${{ inputs.force }}" != "true" ] && docker manifest inspect "${{ steps.v.outputs.image }}:${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
@@ -98,7 +101,9 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          build-args: ZIP_URL=${{ steps.v.outputs.url }}
+          build-args: |
+            ZIP_URL=${{ steps.v.outputs.url }}
+            ICON_URL=${{ matrix.icon }}
           tags: |
             ${{ steps.v.outputs.image }}:${{ steps.v.outputs.version }}
             ${{ steps.v.outputs.image }}:latest
