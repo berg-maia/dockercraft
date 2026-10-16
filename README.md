@@ -84,14 +84,6 @@ The manual run accepts three optional inputs:
 | `version` | Build a specific release (for example `0.8.0`). Requires `project`. Empty uses the latest release. |
 | `force` | `true` rebuilds even if the version already exists. |
 
-## Adding a project
-
-Add an entry to `projects.json`:
-
-```json
-{"name": "newcraft", "repo": "storytold/newcraft", "icon": "https://getartcraft.com/images/apps/newcraft/icon.webp"}
-```
-
 The official repository must publish a release asset named `*-web-<version>.zip`. The `icon` field is optional; it is only used as the page favicon.
 
 ## Making packages public
