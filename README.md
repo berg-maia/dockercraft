@@ -16,6 +16,7 @@ Each image is built from the official `<app>-web-<version>.zip` release asset an
 ghcr.io/berg-maia/<app>-web:<version>
 ghcr.io/berg-maia/<app>-web:latest
 ```
+## Apps
 
 | App | What it is | Release | Official Links | Docker Image |
 |---|---|---|---|---|
