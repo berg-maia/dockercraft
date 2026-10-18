@@ -87,10 +87,6 @@ The manual run accepts three optional inputs:
 
 The official repository must publish a release asset named `*-web-<version>.zip`. The `icon` field is optional; it is only used as the page favicon.
 
-## Making packages public
-
-New GitHub packages are private by default. For each package, open **Packages → `<app>-web` → Package settings → Danger Zone → Change visibility → Public**. This is required for other machines to pull the images without logging in.
-
 ## Updating a running container
 
 Because images are published with the version tag and `latest`, containers that use `:latest` can be updated by pulling the image again and recreating the container (or with a tool such as Watchtower). Containers pinned to a version tag stay on that version until you change the tag.
