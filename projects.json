@@ -11,5 +11,6 @@
   {"name": "soundcraft",  "repo": "storytold/soundcraft",  "icon": "https://getartcraft.com/images/apps/soundcraft/icon.webp"},
   {"name": "deckcraft",   "repo": "storytold/deckcraft",   "icon": "https://getartcraft.com/images/apps/deckcraft/icon.webp"},
   {"name": "cadcraft",    "repo": "storytold/cadcraft",    "icon": "https://getartcraft.com/images/apps/cadcraft/icon.webp"},
-  {"name": "gridcraft",   "repo": "storytold/gridcraft",   "icon": "https://getartcraft.com/images/apps/gridcraft/icon.webp"}
+  {"name": "gridcraft",   "repo": "storytold/gridcraft",   "icon": "https://getartcraft.com/images/apps/gridcraft/icon.webp"},
+  {"name": "solidcraft",   "repo": "tangency-labs/solidcraft",   "icon": "https://solidcraft.io/brand/solidcraft.svg"}
 ]
