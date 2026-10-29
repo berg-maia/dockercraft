@@ -12,5 +12,6 @@
   {"name": "deckcraft",   "repo": "storytold/deckcraft",   "icon": "https://getartcraft.com/images/apps/deckcraft/icon.webp"},
   {"name": "cadcraft",    "repo": "storytold/cadcraft",    "icon": "https://getartcraft.com/images/apps/cadcraft/icon.webp"},
   {"name": "gridcraft",   "repo": "storytold/gridcraft",   "icon": "https://getartcraft.com/images/apps/gridcraft/icon.webp"},
-  {"name": "solidcraft",   "repo": "tangency-labs/solidcraft",   "icon": "https://solidcraft.io/brand/solidcraft.svg"}
+  {"name": "solidcraft",   "repo": "tangency-labs/solidcraft",   "icon": "https://solidcraft.io/brand/solidcraft.svg"},
+  {"name": "tracedraw",   "repo": "igtoth/tracedraw",   "icon": "https://github.com/igtoth/tracedraw/blob/main/assets/icon/tracedraw-256.png"}
 ]
