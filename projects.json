@@ -14,5 +14,6 @@
   {"name": "gridcraft", "repo": "storytold/gridcraft", "icon": "https://raw.githubusercontent.com/storytold/gridcraft/refs/heads/main/assets/app-icon/gridcraft.svg"},
   {"name": "craft-anything", "repo": "storytold/craft-anything", "icon": "https://raw.githubusercontent.com/storytold/craft-anything/refs/heads/main/assets/app-icon/craft-anything.svg"},
   {"name": "texturecraft", "repo": "storytold/texturecraft", "icon": "https://raw.githubusercontent.com/storytold/texturecraft/refs/heads/main/assets/app-icon/texturecraft.svg"},
-  {"name": "solidcraft", "repo": "tangency-labs/solidcraft", "icon": "https://solidcraft.io/brand/solidcraft.svg"}
+  {"name": "solidcraft", "repo": "tangency-labs/solidcraft", "icon": "https://solidcraft.io/brand/solidcraft.svg"},
+  {"name": "chromaforge", "repo": "emmertex/chromaforge", "icon": "https://raw.githubusercontent.com/emmertex/chromaforge/refs/heads/main/assets/app-icon/hicolor/scalable/apps/app.svg"}
 ]
