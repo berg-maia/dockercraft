@@ -1,0 +1,5 @@
+# Image for sites built from source by build-source.yml.
+# The workflow puts the built site in ./site and nginx-static.conf in ./nginx.conf.
+FROM nginx:alpine
+COPY site /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
