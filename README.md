@@ -4,7 +4,7 @@ Automated Docker images for **Craft** applications: open-source, clean-room reim
 
 > **Application credits:**
 > - **ArtCraft applications:** Developed by the [ArtCraft Team](https://getartcraft.com) and their respective contributors.
-> - **SolidCraft:** Developed by [Tangency Labs](https://solidcraft.io) and its contributors.
+> - **SolidCraft:** Developed by [Tangency Labs](https://solidcraft.io) and their respective contributors.
 >
 > This repository only packages the original projects' official web releases as Docker images. It is an independent community project and is not officially affiliated with, endorsed by, or maintained by ArtCraft, Tangency Labs, or any of the respective application developers.
 
