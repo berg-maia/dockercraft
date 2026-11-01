@@ -1,12 +1,12 @@
 # dockercraft
 
-Automated Docker images for the **ArtCraft** suite: open-source, clean-room reimplementations of well-known creative and office applications, rebuilt in pure Rust and served in your browser with WebAssembly.
+Automated Docker images for **Craft** applications: open-source, clean-room reimplementations of well-known creative and productivity software, rebuilt in pure Rust and delivered to your browser through WebAssembly.
 
-> **All credit for the applications goes to the [ArtCraft Team](https://getartcraft.com) and the contributors of each project.**
-> This repository only packages their official web releases as Docker images. It is not an official ArtCraft repository.
-
-- Website: <https://getartcraft.com>
-- GitHub organization: <https://github.com/storytold>
+> **Application credits:**
+> - **ArtCraft applications:** Developed by the [ArtCraft Team](https://getartcraft.com) and their respective contributors.
+> - **SolidCraft:** Developed by [Tangency Labs](https://solidcraft.io) and its contributors.
+>
+> This repository only packages the original projects' official web releases as Docker images. It is an independent community project and is not officially affiliated with, endorsed by, or maintained by ArtCraft, Tangency Labs, or any of the respective application developers.
 
 ## Images
 
@@ -95,10 +95,12 @@ Because images are published with the version tag and `latest`, containers that 
 
 ## Credits and rights
 
-- **Authors:** the applications are created by the **ArtCraft Team and the contributors of each project**. Please direct feature requests and application bugs to the project's own repository, linked in the table above.
-- **License of the applications:** every ArtCraft project is open source under **MIT OR Apache-2.0**. The license texts (`LICENSE-MIT`, `LICENSE-APACHE`) and the `NOTICE` file are in the root of each project's repository, and the images are built from their official releases without modification.
-- **Names and icons:** the app names and icons belong to ArtCraft and its contributors.
-- **Third-party trademarks:** Adobe, Microsoft, Figma, Avid and Autodesk product names are trademarks of their respective owners. They are mentioned only to describe what each ArtCraft app reimplements. This repository is not affiliated with or endorsed by any of these companies.
+- **Authors and contributors:** applications included in this repository are developed and maintained by their respective authors, teams, and organizations. Credits are listed below and updated as new projects are added:
+  - **ArtCraft Team:** ArtCraft applications and contributions.
+  - **Tangency Labs:** SolidCraft.
+- **Licenses:** each application is distributed under its respective license. Please refer to the original project's repository for license information and applicable terms.
+- **Names, logos and icons:** belong to their respective authors, developers, organizations, or rights holders.
+- **Third-party trademarks:** product names and trademarks belong to their respective owners. They are mentioned solely for identification and descriptive purposes. This repository is not affiliated with or endorsed by these companies unless explicitly stated.
 
 ## License
 
