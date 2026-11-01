@@ -1,0 +1,12 @@
+[
+  {
+    "name": "tracedraw",
+    "repo": "tracedraw/tracedraw",
+    "rust": "1.97.0",
+    "binaryen": "version_133",
+    "binaryen_sha256": "2dc9c7813f5375db93d96ead4b78222fcc3e2677bbb832297af4797782a37489",
+    "apt": "fonts-liberation fonts-dejavu-core fonts-noto-core",
+    "script": "scripts/web/build.sh",
+    "out": "site"
+  }
+]
