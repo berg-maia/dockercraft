@@ -1,6 +1,6 @@
 # dockercraft
 
-Automated Docker images for **Craft** applications: open-source, clean-room reimplementations of well-known creative and productivity software, rebuilt in pure Rust and delivered to your browser through WebAssembly.
+Automated Docker images for **Craft** applications
 
 > **Application credits:**
 > - **ArtCraft applications:** Developed by the [ArtCraft Team](https://getartcraft.com) and their respective contributors.
