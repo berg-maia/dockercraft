@@ -1,0 +1,178 @@
+name: Build craft web images from source
+
+# For projects that do not attach a web zip to their releases.
+# The list is projects-source.json. The image name and tags are the same as in build.yml:
+#   ghcr.io/<owner>/<name>-web:<version> and :latest
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Only this project (e.g. tracedraw). Empty = all'
+        required: false
+      version:
+        description: 'Specific version (needs project). Empty = latest release'
+        required: false
+      force:
+        description: 'Rebuild even if the version already exists (true/false)'
+        required: false
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: build-source
+  cancel-in-progress: false
+
+jobs:
+  list:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: m
+        env:
+          ONLY: ${{ inputs.project }}
+          VER: ${{ inputs.version }}
+        run: |
+          if [ -n "$VER" ] && [ -z "$ONLY" ]; then
+            echo "::error::The version field can only be used together with project."
+            exit 1
+          fi
+          if [ -n "$ONLY" ]; then
+            M=$(jq -c --arg n "$ONLY" '{include: map(select(.name==$n))}' projects-source.json)
+          else
+            M=$(jq -c '{include: .}' projects-source.json)
+          fi
+          echo "matrix=$M" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: list
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.list.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Find the release
+        id: v
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.version }}
+          REPO: ${{ matrix.repo }}
+          NAME: ${{ matrix.name }}
+        run: |
+          if [ -n "$INPUT_VERSION" ]; then
+            V="${INPUT_VERSION#v}"
+            JSON=$(gh api "repos/$REPO/releases/tags/v$V" 2>/dev/null || gh api "repos/$REPO/releases/tags/$V")
+          else
+            JSON=$(gh api "repos/$REPO/releases/latest")
+          fi
+          TAG=$(jq -r .tag_name <<<"$JSON")
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+          echo "image=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/${NAME}-web" >> "$GITHUB_OUTPUT"
+          echo "$NAME: release $TAG"
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Was this version already published?
+        id: check
+        run: |
+          if [ "${{ inputs.force }}" != "true" ] && docker manifest inspect "${{ steps.v.outputs.image }}:${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Already published, nothing to do."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out the project at the release tag
+        if: steps.check.outputs.exists == 'false'
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ matrix.repo }}
+          ref: ${{ steps.v.outputs.tag }}
+          path: src
+
+      - name: Rust
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          rustup toolchain install "${{ matrix.rust }}" --profile minimal --target wasm32-unknown-unknown
+          rustup default "${{ matrix.rust }}"
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.check.outputs.exists == 'false'
+        with:
+          workspaces: src
+          key: ${{ matrix.name }}-wasm32
+
+      - name: System packages
+        if: steps.check.outputs.exists == 'false' && matrix.apt != ''
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ${{ matrix.apt }}
+
+      # The wasm-bindgen CLI must be the same version as the crate in Cargo.lock.
+      - name: wasm-bindgen version
+        id: wb
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          WB=$(awk '/^name = "wasm-bindgen"$/{getline; gsub(/version = |"/,""); print; exit}' src/Cargo.lock)
+          if [ -z "$WB" ]; then echo "::error::wasm-bindgen not found in Cargo.lock"; exit 1; fi
+          echo "version=$WB" >> "$GITHUB_OUTPUT"
+
+      - uses: taiki-e/install-action@v2
+        if: steps.check.outputs.exists == 'false'
+        with:
+          tool: wasm-bindgen@${{ steps.wb.outputs.version }}
+
+      - name: Binaryen (wasm-opt)
+        if: steps.check.outputs.exists == 'false'
+        env:
+          BINARYEN: ${{ matrix.binaryen }}
+          BINARYEN_SHA256: ${{ matrix.binaryen_sha256 }}
+        run: |
+          file="binaryen-${BINARYEN}-x86_64-linux.tar.gz"
+          curl -sSfL -o "$RUNNER_TEMP/$file" "https://github.com/WebAssembly/binaryen/releases/download/${BINARYEN}/$file"
+          echo "$BINARYEN_SHA256  $RUNNER_TEMP/$file" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/$file" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/binaryen-${BINARYEN}/bin" >> "$GITHUB_PATH"
+
+      - name: Build the site
+        if: steps.check.outputs.exists == 'false'
+        working-directory: src
+        run: |
+          sh "${{ matrix.script }}"
+          test -f "${{ matrix.out }}/index.html" || { echo "::error::${{ matrix.out }}/index.html was not produced"; exit 1; }
+
+      - name: Prepare the image context
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          mkdir ctx
+          cp -r "src/${{ matrix.out }}" ctx/site
+          cp nginx-static.conf ctx/nginx.conf
+          cp Dockerfile.site ctx/Dockerfile
+          du -sh ctx/site
+
+      - uses: docker/setup-buildx-action@v3
+        if: steps.check.outputs.exists == 'false'
+
+      - uses: docker/build-push-action@v6
+        if: steps.check.outputs.exists == 'false'
+        with:
+          context: ctx
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ steps.v.outputs.image }}:${{ steps.v.outputs.version }}
+            ${{ steps.v.outputs.image }}:latest
