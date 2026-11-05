@@ -2,14 +2,6 @@
 
 Automated Docker images for **Craft** applications
 
-> **Application credits:**
-> - **ArtCraft applications:** Developed by the [ArtCraft Team](https://getartcraft.com) and their respective contributors.
-> - **SolidCraft:** Developed by [Tangency Labs](https://solidcraft.io) and their respective contributors.
-> - **Cromaforge:** Developed by [emmertex](https://github.com/emmertex/chromaforge) and their respective contributors.
-> - **TraceDraw:** Developed by [tracedraw](https://github.com/tracedraw/tracedraw) and their respective contributors.
->
-> This repository only packages the original projects' official web releases as Docker images. It is an independent community project and is not officially affiliated with, endorsed by, or maintained by ArtCraft, Tangency Labs, or any of the respective application developers.
-
 ## Images
 
 Each image is built from the official `<app>-web-<version>.zip` release asset and served by `nginx:alpine`. Images are multi-architecture (`linux/amd64` and `linux/arm64`) and published to the GitHub Container Registry:
@@ -101,13 +93,14 @@ Because images are published with the version tag and `latest`, containers that 
 ## Credits and rights
 
 - **Authors and contributors:** applications included in this repository are developed and maintained by their respective authors, teams, and organizations. Credits are listed below and updated as new projects are added:
-  - **ArtCraft Team:** ArtCraft applications and contributions.
-  - **Tangency Labs:** SolidCraft.
-  - **emmertex:** Cromaforge.
-  - **TraceDraw:** TraceDraw.
+  - **ArtCraft applications:** Developed by the [ArtCraft Team](https://getartcraft.com) and their respective contributors.
+  - **SolidCraft:** Developed by [Tangency Labs](https://solidcraft.io) and their respective contributors.
+  - **Cromaforge:** Developed by [emmertex](https://github.com/emmertex/chromaforge) and their respective contributors.
+  - **TraceDraw:** Developed by [tracedraw](https://github.com/tracedraw/tracedraw) and their respective contributors.
 - **Licenses:** each application is distributed under its respective license. Please refer to the original project's repository for license information and applicable terms.
 - **Names, logos and icons:** belong to their respective authors, developers, organizations, or rights holders.
 - **Third-party trademarks:** product names and trademarks belong to their respective owners. They are mentioned solely for identification and descriptive purposes. This repository is not affiliated with or endorsed by these companies unless explicitly stated.
+- This repository only packages the original projects' official web releases as Docker images. It is an independent community project and is not officially affiliated with, endorsed by, or maintained by ArtCraft, Tangency Labs, or any of the respective application developers.
 
 ## License
 
